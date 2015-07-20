@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.summary = "Restrict system operations on OpenBSD"
   s.author = "Jeremy Evans"
   s.email = "code@jeremyevans.net"
-  s.homepage = "http://github.com/jeremyevans/tame_libs/ruby"
+  s.homepage = "https://github.com/jeremyevans/tame_libs/tree/master/ruby"
   s.required_ruby_version = ">= 1.8.7"
   s.files = %w(MIT-LICENSE CHANGELOG README.rdoc Rakefile ext/tame/extconf.rb ext/tame/tame.c)
   s.license = 'MIT'
