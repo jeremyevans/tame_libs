@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'tame'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.platform = Gem::Platform::RUBY
   s.extra_rdoc_files = ["README.rdoc", "CHANGELOG", "MIT-LICENSE"]
   s.rdoc_options += ["--quiet", "--line-numbers", "--inline-source", '--title', 'tame: restrict system operations on OpenBSD', '--main', 'README.rdoc']
@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email = "code@jeremyevans.net"
   s.homepage = "https://github.com/jeremyevans/tame_libs/tree/master/ruby"
   s.required_ruby_version = ">= 1.8.7"
-  s.files = %w(MIT-LICENSE CHANGELOG README.rdoc Rakefile ext/tame/extconf.rb ext/tame/tame.c)
+  s.files = %w(MIT-LICENSE CHANGELOG README.rdoc Rakefile ext/tame/extconf.rb ext/tame/tame.c spec/tame_spec.rb)
   s.license = 'MIT'
   s.extensions << 'ext/tame/extconf.rb'
   s.description = <<END
