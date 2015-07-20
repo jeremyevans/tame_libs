@@ -66,13 +66,13 @@ options grant.
 
 This library uses GitHub Issues for tracking issues/bugs:
 
-  http://github.com/jeremyevans/tame_libs/issues
+  https://github.com/jeremyevans/tame_libs/issues
 
 == Contributing
 
 The source code is on GitHub:
 
-  http://github.com/jeremyevans/tame_libs/ruby
+  https://github.com/jeremyevans/tame_libs/tree/master/ruby
 
 To get a copy:
 
