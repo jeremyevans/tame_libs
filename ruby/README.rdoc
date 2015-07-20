@@ -1,0 +1,111 @@
+= tame
+
+tame exposes OpenBSD's tame(2) system call to ruby, allowing a
+program to restrict the types of operations the program
+can do after that point.  Unlike other similar systems,
+tame is specifically designed for programs that need to
+use a wide variety of operations on initialization, but
+a fewer number after initialization (when user input will
+be accepted).
+
+tame(2) is supported on OpenBSD 5.8+.
+
+== Usage
+
+First, you need to require the library
+
+  require 'tame'
+
+Then you can use +Tame.tame+ as the interface to the tame(2) system
+call.  You pass +Tame.tame+ symbols representing the operations you
+would like to allow.  For example, if you want to give the process
+the ability to read from the the file system, but not read from the
+file system or allow network access:
+
+  Tame.tame(:rpath)
+
+To allow read/write filesystem access, but not network access:
+
+  Tame.tame(:rpath, :wpath, :cpath)
+
+To allow inet/unix socket access and DNS queries, but not
+filesystem access:
+
+  Tame.tame(:inet, :unix, :dns)
+
++Tame+ is a module that extends itself, you can include it
+in other classes:
+
+  Object.send(:include, Tame)
+  tame(:rpath)
+
+== Options
+
+Here are the symbols that are supported, along with the tame(2)
+permission they grant.
+
+:abort :: TAME_ABORT
+:cmsg :: TAME_CMSG
+:cpath :: TAME_CPATH
+:dns :: TAME_DNS
+:getpw :: TAME_GETPW
+:inet :: TAME_INET
+:ioctl :: TAME_IOCTL
+:proc :: TAME_PROC
+:rpath :: TAME_RPATH
+:tmppath :: TAME_TMPPATH
+:unix :: TAME_UNIX
+:wpath :: TAME_WPATH
+
+Using an unsupported symbol will raise an exception.  The TAME_STDIO
+permission is automatically used, as ruby does not function without
+it.  See the tame(2) manual for details about what permissions the
+options grant.
+
+== Reporting issues/bugs
+
+This library uses GitHub Issues for tracking issues/bugs:
+
+  http://github.com/jeremyevans/tame_libs/issues
+
+== Contributing
+
+The source code is on GitHub:
+
+  http://github.com/jeremyevans/tame_libs/ruby
+
+To get a copy:
+
+  git clone git://github.com/jeremyevans/tame_libs.git
+
+== Requirements
+
+* OpenBSD 5.8+
+* ruby 1.8.7+
+* rake-compiler (if compiling)
+
+== Compiling
+
+To build the library from a git checkout, use the compile task.
+
+  rake compile
+
+== Running the specs
+
+The rake spec task runs the specs.  This is also the default rake
+task.  This will compile the library if not already compiled. 
+
+  rake
+
+== Known Issues
+
+* You cannot create new threads after running +Tame.tame+, as
+  it uses syscalls that are not currently allowed by tame(2).  +fork+
+  still works.
+
+* You cannot currently test +Tame.tame+ in irb/pry, as they use an
+  ioctl that is not currently allowed by tame(2).
+
+== Author
+
+Jeremy Evans <code@jeremyevans.net>

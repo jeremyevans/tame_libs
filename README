@@ -1,0 +1,2 @@
+This repository includes programming language wrappers for the tame(2)
+system call included in OpenBSD 5.8+.
